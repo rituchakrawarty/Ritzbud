@@ -1,0 +1,13 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: .*
+  script: main.app
+
+libraries:
+- name: ritz
+  version: "2.6"
+- name: markupsafe
+  version: "0.15"
