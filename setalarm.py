@@ -28,11 +28,11 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "shipping.cost":
+    if req.get("result").get("action") != "alarm.set":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    zone = parameters.get("shipping-zone")
+    zone = parameters.get("date")
 
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
@@ -46,7 +46,7 @@ def makeWebhookResult(req):
         "displayText": speech,
         #"data": {},
         # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
+        "source": "apiai-mycalapp"
     }
 
 
