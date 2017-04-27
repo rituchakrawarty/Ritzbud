@@ -44,9 +44,9 @@ def makeWebhookResult(req):
     return {
         "speech": speech,
         "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-mycalapp"
+        "data": {},
+        "contextOut": [],
+        "source": "agent"
     }
 
 
