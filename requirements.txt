@@ -2,4 +2,3 @@ Flask==0.10.1
 oauth2client==2.0.1
 httplib2==0.10.3
 apiclient==1.0.2
-google-api-python-client==1.4.2
