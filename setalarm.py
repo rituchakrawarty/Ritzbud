@@ -1,30 +1,12 @@
-from __future__ import print_function
-import httplib2
-import os
+#!/usr/bin/env python
+
 import urllib
 import json
+import os
 
-from apiclient import discovery
-from oauth2client import client
-from oauth2client import tools
-from oauth2client.file import Storage
 from flask import Flask
 from flask import request
 from flask import make_response
-
-import datetime
-
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
-
-# If modifying these scopes, delete your previously saved credentials
-# at ~/.credentials/calendar-python-quickstart.json
-SCOPES = 'https://www.googleapis.com/auth/calendar'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -46,16 +28,15 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "alarm.set":
+    if req.get("result").get("action") != "shipping.cost":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    eventdate = parameters.get("date")
-    eventtime = parameters.get("time")
+    zone = parameters.get("shipping-zone")
 
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
-    speech = "The event has been scheduled on " + str(eventdate) + " at time " + str(eventtime) + " . IS there anything else I can do?"
+    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
 
     print("Response:")
     print(speech)
@@ -65,8 +46,9 @@ def makeWebhookResult(req):
         "displayText": speech,
         #"data": {},
         # "contextOut": [],
-        "source": "apiai-setalarm"
+        "source": "apiai-onlinestore-shipping"
     }
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
