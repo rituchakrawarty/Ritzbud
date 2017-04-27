@@ -2,6 +2,5 @@
   "name": "API.AI Set Alarm Webhook",
   "description": "API.AI Set Alarm Webhook Sapmple",
   "repository": "https://github.com/rituchakrawarty/Ritzbud",
-  "logo": "http://xvir.github.io/img/apiai.png",
-  "keywords": ["api.ai", "natural language"]
+  "logo": "http://xvir.github.io/img/apiai.png"
 }
